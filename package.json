@@ -1,0 +1,27 @@
+{
+  "name": "troubleshoot-server",
+  "version": "1.0.0",
+  "description": "server for troubleshoot app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pojok-webdev/troubleshoot-server.git"
+  },
+  "keywords": [
+    "padiApp"
+  ],
+  "author": "Puji W Prayitno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pojok-webdev/troubleshoot-server/issues"
+  },
+  "homepage": "https://github.com/pojok-webdev/troubleshoot-server#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "promise-mysql": "^3.3.2"
+  }
+}
