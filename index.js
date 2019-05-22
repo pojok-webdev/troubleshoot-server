@@ -33,5 +33,11 @@ app.get('/troubleshoot/:id',(req,res)=>{
         res.send(rows)
     })
 })
+app.get('/troubleshootslimit/:segment/:offset',(req,res)=>{
+    console.log("ReqBody",req.body)
+    connection.doQuery(troubleshoots.getslimit(req.params),rows => {
+        res.send(rows)
+    })
+})
 
 app.listen(process.env.PORT||2319)
