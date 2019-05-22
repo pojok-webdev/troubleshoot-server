@@ -11,10 +11,10 @@ get = obj => {
     console.log("SQL troubleshoot get",sql)
     return sql
 }
-getslimit = (segment,offset) => {
+getslimit = obj => {
     sql = "select a.id,b.clientname name,b.kdticket from troubleshoot_requests a "
     sql+= "left outer join tickets b on b.id=a.ticket_id "
-    sql+= "limit " + segment + ", " + offset + " "
+    sql+= "limit " + obj.segment + ", " + obj.offset + " "
     console.log("SQL troubleshoot gets",sql)
     return sql
 }
