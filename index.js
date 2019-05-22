@@ -28,14 +28,18 @@ app.get('/troubleshoots',(req,res)=>{
     })
 })
 app.get('/troubleshoot/:id',(req,res)=>{
-    console.log("ReqBody",req.body)
     connection.doQuery(troubleshoots.get(req.params),rows => {
         res.send(rows)
     })
 })
 app.get('/troubleshootslimit/:segment/:offset',(req,res)=>{
-    console.log("ReqBody",req.body)
     connection.doQuery(troubleshoots.getslimit(req.params),rows => {
+        res.send(rows)
+    })
+})
+app.post('/troubleshootsearch',(req,res)=>{
+    console.log("ReqBody",req.body)
+    connection.doQuery(troubleshoots.search(req.body),rows => {
         res.send(rows)
     })
 })
