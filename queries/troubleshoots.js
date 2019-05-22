@@ -16,8 +16,8 @@ get = obj => {
 getslimit = obj => {
     sql = "select a.id,b.clientname name,b.kdticket from troubleshoot_requests a "
     sql+= "left outer join tickets b on b.id=a.ticket_id "
-    sql+= "limit " + obj.segment + ", " + obj.offset + " "
     sql+= "order by b.kdticket desc "
+    sql+= "limit " + obj.segment + ", " + obj.offset + " "
     console.log("SQL troubleshoot gets",sql)
     return sql
 }
