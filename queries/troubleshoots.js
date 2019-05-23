@@ -24,7 +24,7 @@ getslimit = obj => {
 search = obj => {
     sql = "select a.id,b.clientname name,b.kdticket from troubleshoot_requests a "
     sql+= "left outer join tickets b on b.id=a.ticket_id "
-    sql+= "where b.clientname like '%" + obj.clientname + "%' or b.kdticket = '" + obj.kdticket + "' "
+    sql+= "where b.clientname like '%" + obj.clientname + "%' or b.kdticket like '%" + obj.kdticket + "%' "
     sql+= "order by b.kdticket desc "
     sql+= "limit " + obj.segment + ", " + obj.offset + " "
     console.log("SQL troubleshoot gets",sql)
