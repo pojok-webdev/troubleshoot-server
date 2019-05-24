@@ -3,7 +3,8 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     connection = require("./js/connections"),
     tickets = require("./queries/tickets"),
-    troubleshoots = require("./queries/troubleshoots");
+    troubleshoots = require("./queries/troubleshoots"),
+    checklistmaster = require("./queries/checklistmaster");
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin","*")
     res.header("Access-Control-Allow-Headers","Origin,X-Requested-With,Content-Type,Accept")
@@ -43,5 +44,9 @@ app.post('/troubleshootsearch',(req,res)=>{
         res.send(rows)
     })
 })
-
+app.get('/checklistmaster',(req,res)=>{
+    connection.doQuery(checklistmaster.gets(req.params),rows => {
+        res.send(rows)
+    })
+})
 app.listen(process.env.PORT||2319)
