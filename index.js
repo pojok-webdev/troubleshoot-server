@@ -52,7 +52,7 @@ app.get('/troubleshootchecklistmaster',(req,res)=>{
 })
 app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.getByTroubleshoot(req.params),rows => {
-        res.send(rows[0])
+        res.send(rows)
     })
 })
 app.listen(process.env.PORT||2319)
