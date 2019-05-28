@@ -55,4 +55,9 @@ app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
         res.send(rows)
     })
 })
+app.post('/troubleshootchecklistsave',(req,res) => {
+    connection.doQuery(troubleshootchecklists.saveChecklist(req.body),rows => {
+        res.send(rows)
+    })
+})
 app.listen(process.env.PORT||2319)
