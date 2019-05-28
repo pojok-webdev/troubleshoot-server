@@ -24,6 +24,7 @@ saveChecklist = obj => {
     sql+= "'"+obj.troubleshootdate+"',"
     sql+= "'"+obj.createuser+"'"
     sql+= ")"
+    console.log("save checklist",sql)
     return sql
 }
 module.exports = {
