@@ -3,7 +3,8 @@ gets = obj => {
     sql+= "left outer join groups_users b on b.user_id=a.id "
     sql+= "left outer join groups c on c.id=b.group_id "
     sql+= "where c.id = " + obj.group_id + " "
-    return 
+    console.log("SQL",sql)
+    return sql
 }
 module.exports = {
     gets:gets
