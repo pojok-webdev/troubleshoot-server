@@ -7,6 +7,7 @@ var express = require("express"),
     troubleshootchecklists = require("./queries/troubleshootchecklists"),
     devices = require("./queries/devices"),
     users = require("./queries/users"),
+    ticketproblems = require("./queries/ticketproblems"),
     troubleshootchecklistmaster = require("./queries/troubleshootchecklistmaster");
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin","*")
@@ -69,6 +70,11 @@ app.get('/devicegets',(req,res)=>{
 })
 app.get('/usergets/:group_id',(req,res)=>{
     connection.doQuery(users.gets(req.params),rows => {
+        res.send(rows)
+    })
+})
+app.get('/ticketproblems',(req,res)=>{
+    connection.doQuery(ticketproblems.gets(),rows => {
         res.send(rows)
     })
 })
