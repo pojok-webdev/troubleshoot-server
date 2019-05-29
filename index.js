@@ -67,7 +67,7 @@ app.get('/devicegets',(req,res)=>{
         res.send(rows)
     })
 })
-app.get('/usergets',(req,res)=>{
+app.get('/usergets/:group_id',(req,res)=>{
     connection.doQuery(users.gets(req.params),rows => {
         res.send(rows)
     })
