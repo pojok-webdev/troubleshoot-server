@@ -6,6 +6,7 @@ var express = require("express"),
     troubleshoots = require("./queries/troubleshoots"),
     troubleshootchecklists = require("./queries/troubleshootchecklists"),
     devices = require("./queries/devices"),
+    users = require("./queries/users"),
     troubleshootchecklistmaster = require("./queries/troubleshootchecklistmaster");
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin","*")
@@ -63,6 +64,11 @@ app.post('/troubleshootchecklistsave',(req,res) => {
 })
 app.get('/devicegets',(req,res)=>{
     connection.doQuery(devices.gets(),rows => {
+        res.send(rows)
+    })
+})
+app.get('/usergets',(req,res)=>{
+    connection.doQuery(users.gets(req.params),rows => {
         res.send(rows)
     })
 })
