@@ -33,7 +33,43 @@ saveChecklist = obj => {
     console.log("save checklist",sql)
     return sql
 }
+saveImplementers = obj => {
+    sql = "insert into troubleshootchecklists_implementers "
+    sql+= "(troubleshootchecklist_id,implementer_id) "
+    sql+= "values "
+    sql+= "("+obj.troubleshootchecklist_id+","+obj.implementer_id+")"
+    console.log("saveImplementer",obj,sql)
+    return sql
+}
+saveBroughtDevices = obj => {
+    sql = "insert into troubleshootchecklists_broughtdevices "
+    sql+= "(troubleshootchecklist_id,device_id) "
+    sql+= "values "
+    sql+= "("+obj.troubleshootchecklist_id+","+obj.device_id+")"
+    console.log("saveBroughtDevice",obj,sql)
+    return sql
+}
+saveUsedDevices = obj => {
+    sql = "insert into troubleshootchecklists_useddevices "
+    sql+= "(troubleshootchecklist_id,device_id) "
+    sql+= "values "
+    sql+= "("+obj.troubleshootchecklist_id+","+obj.device_id+")"
+    console.log("saveBroughtDevice",obj,sql)
+    return sql
+}
+saveProblemcauses = obj => {
+    sql = "insert into troubleshootchecklists_problems "
+    sql+= "(troubleshootchecklist_id,problem_id) "
+    sql+= "values "
+    sql+= "("+obj.troubleshootchecklist_id+","+obj.problem_id+")"
+    console.log("saveBroughtDevice",obj,sql)
+    return sql
+}
 module.exports = {
     getByTroubleshoot:getByTroubleshoot,
-    saveChecklist:saveChecklist
+    saveChecklist:saveChecklist,
+    saveImplementers:saveImplementers,
+    saveBroughtDevices:saveBroughtDevices,
+    saveUsedDevices:saveUsedDevices,
+    saveProblemcauses:saveProblemcauses
 }
