@@ -24,7 +24,7 @@ getslimit = obj => {
     sql+= "group by a.id,b.clientname,b.kdticket "
     sql+= "order by b.kdticket desc "
     sql+= "limit " + obj.segment + ", " + obj.offset + " "
-    console.log("SQL troubleshoot gets",sql)
+    console.log("SQL troubleshoot getslimit",sql)
     return sql
 }
 search = obj => {
@@ -35,7 +35,7 @@ search = obj => {
     sql+= "group by a.id,b.clientname,b.kdticket "
     sql+= "order by b.kdticket desc "
     sql+= "limit " + obj.segment + ", " + obj.offset + " "
-    console.log("SQL troubleshoot gets",sql)
+    console.log("SQL troubleshoot search",sql)
     return sql
 }
 module.exports = {
