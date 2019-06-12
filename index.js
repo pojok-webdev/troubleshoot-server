@@ -33,6 +33,7 @@ app.get('/troubleshoots',(req,res)=>{
     })
 })
 app.get('/troubleshoot/:id',(req,res)=>{
+    console.log("REQ.PARAMS",req.params)
     connection.doQuery(troubleshoots.get(req.params),rows => {
         res.send(rows)
     })
