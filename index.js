@@ -102,4 +102,9 @@ app.get('/ticketproblems',(req,res)=>{
         res.send(rows)
     })
 })
+app.get('/troubleshootchecklistsgetbyid/:troubleshootchecklist_id',(req,res)=>{
+    connection.doQuery(troubleshootchecklists.getObj(req.params),rows =>{
+        res.send(rows)
+    })
+})
 app.listen(process.env.PORT||2319)

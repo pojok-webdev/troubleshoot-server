@@ -65,11 +65,17 @@ saveProblemcauses = obj => {
     console.log("saveBroughtDevice",obj,sql)
     return sql
 }
+getObj = obj => {
+    sql = "select * from troubleshootchecklists "
+    sql+= "where id = " + obj.troubleshootchecklist_id
+    return sql
+}
 module.exports = {
     getByTroubleshoot:getByTroubleshoot,
     saveChecklist:saveChecklist,
     saveImplementers:saveImplementers,
     saveBroughtDevices:saveBroughtDevices,
     saveUsedDevices:saveUsedDevices,
-    saveProblemcauses:saveProblemcauses
+    saveProblemcauses:saveProblemcauses,
+    getObj:getObj
 }
