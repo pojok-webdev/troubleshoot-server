@@ -90,7 +90,7 @@ getImplementers = obj => {
 }
 removeImplementer = obj => {
     sql = "delete from troubleshootchecklists_implementers "
-    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and problem_id = " + obj.implementer_id + " "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and implementer_id = " + obj.implementer_id + " "
     return sql
 }
 getDevicebroughts = obj => {

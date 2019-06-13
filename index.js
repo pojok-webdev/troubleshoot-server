@@ -37,22 +37,22 @@ app.get('/troubleshootchecklistproblems/:troubleshootchecklist_id',(req,res)=>{
     })
 })
 
-app.get('/troubleshootchecklistremoveproblem/:',(req,res)=>{
+app.get('/troubleshootchecklistremoveproblem/:troubleshootchecklist_id/:problem_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.removeProblem(req.params),rows => {
         res.send(rows)
     })
 })
-app.get('/troubleshootchecklistremovedeviceused/:',(req,res)=>{
+app.get('/troubleshootchecklistremovedeviceused/:troubleshootchecklist_id/:device_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.removeDeviceused(req.params),rows => {
         res.send(rows)
     })
 })
-app.get('/troubleshootchecklistremovedevicebrought/:',(req,res)=>{
+app.get('/troubleshootchecklistremovedevicebrought/:troubleshootchecklist_id/:device_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.removeDevicebrought(req.params),rows => {
         res.send(rows)
     })
 })
-app.get('/troubleshootchecklistremoveimplementer/:',(req,res)=>{
+app.get('/troubleshootchecklistremoveimplementer/:troubleshootchecklist_id/:user_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.removeImplementer(req.params),rows => {
         res.send(rows)
     })
