@@ -59,32 +59,61 @@ app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
         res.send(rows)
     })
 })
+saveChecklistDetails = (srcParams,checklistId) => {
+    console.log("Output",rows)
+    srcParams.users.forEach(user => {
+        connection.doQuery(troubleshootchecklists.saveImplementers(
+            {
+                troubleshootchecklist_id:checklistId,
+                implementer_id:user.id
+            }),res => {
+            return(res)
+        })
+    })
+    srcParams.devicesBrought.forEach(dev=>{
+        console.log("Device brought",dev)
+        connection.doQuery(troubleshootchecklists.saveBroughtDevices(
+            {
+                troubleshootchecklist_id:checklistId,
+                device_id:dev.id
+            }),res => {
+            return(res)
+        })    
+    })
+    srcParams.devicesUsed.forEach(dev => {
+        connection.doQuery(troubleshootchecklists.saveUsedDevices(
+            {
+                troubleshootchecklist_id:checklistId,
+                device_id:dev.id
+            }),res => {
+            return(res)
+        })
+    })
+    srcParams.problemTypes.forEach(problem => {
+        connection.doQuery(troubleshootchecklists.saveProblemcauses(
+            {
+                troubleshootchecklist_id:checklistId,
+                problem_id:problem.id
+            }),res => {
+            return(res)
+        })
+    })
+}
 app.post('/troubleshootchecklistsave',(req,res) => {
-    console.log("post params",req.body)
     let srcParams = req.body
+    switch(srcParams.requestType){
+        case 'add':
+            connection.doQuery(troubleshootchecklists.saveChecklist(srcParams),rows => {
+                this.saveChecklistDetails(srcParams,rows.insertId)
+            })
+        break
+        case 'edit':
+            connection.doQuery(troubleshootchecklists.updateChecklist(srcParams),rows => {
+                this.saveChecklistDetails(srcParams,srcParams.id)
+            })
+        break
+    }
     connection.doQuery(troubleshootchecklists.saveChecklist(req.body),rows => {
-        console.log("Output",rows)
-        srcParams.users.forEach(user => {
-            connection.doQuery(troubleshootchecklists.saveImplementers({troubleshootchecklist_id:rows.insertId,implementer_id:user.id}),res => {
-                return(res)
-            })
-        })
-        srcParams.devicesBrought.forEach(dev=>{
-            console.log("Device brought",dev)
-            connection.doQuery(troubleshootchecklists.saveBroughtDevices({troubleshootchecklist_id:rows.insertId,device_id:dev.id}),res => {
-                return(res)
-            })    
-        })
-        srcParams.devicesUsed.forEach(dev => {
-            connection.doQuery(troubleshootchecklists.saveUsedDevices({troubleshootchecklist_id:rows.insertId,device_id:dev.id}),res => {
-                return(res)
-            })
-        })
-        srcParams.problemTypes.forEach(problem => {
-            connection.doQuery(troubleshootchecklists.saveProblemcauses({troubleshootchecklist_id:rows.insertId,problem_id:problem.id}),res => {
-                return(res)
-            })
-        })
         res.send(rows)
     })
 })

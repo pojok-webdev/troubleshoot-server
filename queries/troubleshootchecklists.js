@@ -33,6 +33,17 @@ saveChecklist = obj => {
     console.log("save checklist",sql)
     return sql
 }
+updateChecklist = obj => {
+    sql = "update troubleshootchecklists "
+    sql+= "set deviceused='"+obj.deviceused+"', "
+    sql+= "devicebrought='"+obj.devicebrought+"', "
+    sql+= "problemcategory='"+obj.problemcategory+"', "
+    sql+= "problemtype='"+obj.problemtype+"', "
+    sql+= "troubleshootdate='"+obj.troubleshootdate+"' "
+    sql+= "where id="+obj.id+" "
+    console.log("update checklist",sql)
+    return sql
+}
 saveImplementers = obj => {
     sql = "insert into troubleshootchecklists_implementers "
     sql+= "(troubleshootchecklist_id,implementer_id) "
@@ -73,6 +84,7 @@ getObj = obj => {
 module.exports = {
     getByTroubleshoot:getByTroubleshoot,
     saveChecklist:saveChecklist,
+    updateChecklist:updateChecklist,
     saveImplementers:saveImplementers,
     saveBroughtDevices:saveBroughtDevices,
     saveUsedDevices:saveUsedDevices,
