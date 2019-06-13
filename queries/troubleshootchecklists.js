@@ -81,6 +81,34 @@ getObj = obj => {
     sql+= "where id = " + obj.troubleshootchecklist_id
     return sql
 }
+getImplementers = obj => {
+    sql = "select a.id,b.username from troubleshootchecklists_implementers a "
+    sql+= "left outer join users b on b.id=a.implementer_id "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("getImplementers",sql)
+    return sql
+}
+getDevicebroughts = obj => {
+    sql = "select a.id,b.name from troubleshootchecklists_broughtdevices a "
+    sql+= "left outer join devices b on b.id=a.device_id "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("getDevicebrought",sql)
+    return sql
+}
+getDeviceused = obj => {
+    sql = "select a.id,b.name from troubleshootchecklists_useddevices a "
+    sql+= "left outer join devices b on b.id=a.device_id "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("getDeviceused",sql)
+    return sql
+}
+getProblems = obj => {
+    sql = "select a.id,b.name from troubleshootchecklists_problems a "
+    sql+= "left outer join ticketcauses b on b.id=a.problem_id "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("getProblems",sql)
+    return sql
+}
 getItems = obj => {
     sql = "select * from " + obj.table + " "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
@@ -96,5 +124,9 @@ module.exports = {
     saveUsedDevices:saveUsedDevices,
     saveProblemcauses:saveProblemcauses,
     getObj:getObj,
-    getItems:getItems
+    getItems:getItems,
+    getImplementers:getImplementers,
+    getDevicebroughts:getDevicebroughts,
+    getDeviceused:getDeviceused,
+    getProblems:getProblems
 }
