@@ -115,9 +115,6 @@ app.post('/troubleshootchecklistsave',(req,res) => {
             })
         break
     }
-    connection.doQuery(troubleshootchecklists.saveChecklist(req.body),rows => {
-        res.send(rows)
-    })
 })
 app.get('/devicegets',(req,res)=>{
     connection.doQuery(devices.gets(),rows => {
