@@ -52,7 +52,7 @@ app.get('/troubleshootchecklistremovedevicebrought/:troubleshootchecklist_id/:de
         res.send(rows)
     })
 })
-app.get('/troubleshootchecklistremoveimplementer/:troubleshootchecklist_id/:user_id',(req,res)=>{
+app.get('/troubleshootchecklistremoveimplementer/:troubleshootchecklist_id/:implementer_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.removeImplementer(req.params),rows => {
         res.send(rows)
     })
