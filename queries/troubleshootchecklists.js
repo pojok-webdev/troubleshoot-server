@@ -88,11 +88,21 @@ getImplementers = obj => {
     console.log("getImplementers",sql)
     return sql
 }
+removeImplementer = obj => {
+    sql = "delete from troubleshootchecklists_implementers "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and problem_id = " + obj.implementer_id + " "
+    return sql
+}
 getDevicebroughts = obj => {
     sql = "select a.troubleshootchecklist_id,a.device_id,b.name from troubleshootchecklists_broughtdevices a "
     sql+= "left outer join devices b on b.id=a.device_id "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
     console.log("getDevicebrought",sql)
+    return sql
+}
+removeDevicebrought = obj => {
+    sql = "delete from troubleshootchecklists_broughtdevices "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and device_id = " + obj.device_id + " "
     return sql
 }
 getDeviceused = obj => {
@@ -102,6 +112,11 @@ getDeviceused = obj => {
     console.log("getDeviceused",sql)
     return sql
 }
+removeDeviceused = obj => {
+    sql = "delete from troubleshootchecklists_useddevices "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and device_id = " + obj.device_id + " "
+    return sql
+}
 getProblems = obj => {
     sql = "select a.troubleshootchecklist_id,a.problem_id,b.name from troubleshootchecklists_problems a "
     sql+= "left outer join ticketcauses b on b.id=a.problem_id "
@@ -109,10 +124,9 @@ getProblems = obj => {
     console.log("getProblems",sql)
     return sql
 }
-getItems = obj => {
-    sql = "select * from " + obj.table + " "
-    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
-    console.log("getItems",sql)
+removeProblem = obj => {
+    sql = "delete from troubleshootchecklists_problems "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and problem_id = " + obj.problem_id + " "
     return sql
 }
 module.exports = {
@@ -124,9 +138,12 @@ module.exports = {
     saveUsedDevices:saveUsedDevices,
     saveProblemcauses:saveProblemcauses,
     getObj:getObj,
-    getItems:getItems,
     getImplementers:getImplementers,
     getDevicebroughts:getDevicebroughts,
     getDeviceused:getDeviceused,
-    getProblems:getProblems
+    getProblems:getProblems,
+    removeDevicebrought:removeDevicebrought,
+    removeDeviceused:removeDeviceused,
+    removeImplementer:removeImplementer,
+    removeProblem:removeProblem
 }
