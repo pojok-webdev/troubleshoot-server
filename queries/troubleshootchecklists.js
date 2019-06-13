@@ -81,6 +81,12 @@ getObj = obj => {
     sql+= "where id = " + obj.troubleshootchecklist_id
     return sql
 }
+getItems = obj => {
+    sql = "select * from " + obj.table + " "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("getItems",sql)
+    return sql
+}
 module.exports = {
     getByTroubleshoot:getByTroubleshoot,
     saveChecklist:saveChecklist,
@@ -89,5 +95,6 @@ module.exports = {
     saveBroughtDevices:saveBroughtDevices,
     saveUsedDevices:saveUsedDevices,
     saveProblemcauses:saveProblemcauses,
-    getObj:getObj
+    getObj:getObj,
+    getItems:getItems
 }

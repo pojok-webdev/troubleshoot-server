@@ -16,7 +16,11 @@ app.use((req,res,next)=>{
 })
 app.use(bodyParser.json({limit:'10mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}))
-
+app.get('/troubleshootchecklistitems',(req,res)=>{
+    connection.doQuery(troubleshootchecklists.getItems(req.params),rows => {
+        res.send(rows)
+    })
+})
 app.get('/tickets',(req,res)=>{
     connection.doQuery(tickets.gets(req.body),rows => {
         res.send(rows)
