@@ -102,7 +102,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
 app.post('/troubleshootchecklistsave',(req,res) => {
     let srcParams = req.body
     console.log(req.body)
-    switch(srcParams.requestType){
+    switch(srcParams.problemType){
         case 'add':
         console.log('add woy')
             connection.doQuery(troubleshootchecklists.saveChecklist(srcParams),rows => {
