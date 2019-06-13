@@ -106,13 +106,13 @@ app.post('/troubleshootchecklistsave',(req,res) => {
         case 'add':
         console.log('add woy')
             connection.doQuery(troubleshootchecklists.saveChecklist(srcParams),rows => {
-                this.saveChecklistDetails(srcParams,rows.insertId)
+                saveChecklistDetails(srcParams,rows.insertId)
             })
         break
         case 'edit':
         console.log('edit woy')
             connection.doQuery(troubleshootchecklists.updateChecklist(srcParams),rows => {
-                this.saveChecklistDetails(srcParams,srcParams.id)
+                saveChecklistDetails(srcParams,srcParams.id)
             })
         break
     }
