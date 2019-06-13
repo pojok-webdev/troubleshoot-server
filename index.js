@@ -60,7 +60,6 @@ app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
     })
 })
 saveChecklistDetails = (srcParams,checklistId) => {
-    console.log("Output",rows)
     srcParams.users.forEach(user => {
         connection.doQuery(troubleshootchecklists.saveImplementers(
             {
