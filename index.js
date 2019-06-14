@@ -122,7 +122,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
             ))
         })
         srcParams.devicesUsed.forEach(dev => {
-            connection.doQuery(troubleshootchecklists.removeImplementer(
+            connection.doQuery(troubleshootchecklists.removeDeviceused(
                 {
                     troubleshootchecklist_id:checklistId,
                     device_id:dev.id
