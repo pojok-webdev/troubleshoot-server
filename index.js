@@ -104,6 +104,40 @@ app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
     })
 })
 saveChecklistDetails = (srcParams,checklistId) => {
+    if(srcParams.problemType==="edit"){
+        srcParams.users.forEach(user => {
+            connection.doQuery(troubleshootchecklists.removeImplementer(
+                {
+                    troubleshootchecklist_id:checklistId,
+                    implementer_id:user.id
+                }
+            ))
+        })
+        srcParams.devicesBrought.forEach(dev => {
+            connection.doQuery(troubleshootchecklists.removeDevicebrought(
+                {
+                    troubleshootchecklist_id:checklistId,
+                    device_id:dev.id
+                }
+            ))
+        })
+        srcParams.devicesUsed.forEach(dev => {
+            connection.doQuery(troubleshootchecklists.removeImplementer(
+                {
+                    troubleshootchecklist_id:checklistId,
+                    device_id:dev.id
+                }
+            ))
+        })
+        srcParams.problemTypes.forEach(problem => {
+            connection.doQuery(troubleshootchecklists.removeProblem(
+                {
+                    troubleshootchecklist_id:checklistId,
+                    problem_id:problem.id
+                }
+            ))
+        })
+    }
     srcParams.users.forEach(user => {
         connection.doQuery(troubleshootchecklists.saveImplementers(
             {
