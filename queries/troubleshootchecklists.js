@@ -89,6 +89,7 @@ getImplementers = obj => {
     return sql
 }
 removeImplementer = obj => {
+    console.log("ImPlemeNter OBJ",obj)
     sql = "delete from troubleshootchecklists_implementers "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and implementer_id = " + obj.implementer_id + " "
     console.log("remove implementer",sql)
