@@ -142,7 +142,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
         connection.doQuery(troubleshootchecklists.saveImplementers(
             {
                 troubleshootchecklist_id:checklistId,
-                implementer_id:user.id
+                implementer_id:user.implementer_id
             }),res => {
             return(res)
         })
@@ -152,7 +152,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
         connection.doQuery(troubleshootchecklists.saveBroughtDevices(
             {
                 troubleshootchecklist_id:checklistId,
-                device_id:dev.id
+                device_id:dev.device_id
             }),res => {
             return(res)
         })    
@@ -161,7 +161,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
         connection.doQuery(troubleshootchecklists.saveUsedDevices(
             {
                 troubleshootchecklist_id:checklistId,
-                device_id:dev.id
+                device_id:dev.device_id
             }),res => {
             return(res)
         })
@@ -170,7 +170,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
         connection.doQuery(troubleshootchecklists.saveProblemcauses(
             {
                 troubleshootchecklist_id:checklistId,
-                problem_id:problem.id
+                problem_id:problem.problem_id
             }),res => {
             return(res)
         })
