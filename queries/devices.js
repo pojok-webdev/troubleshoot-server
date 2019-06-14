@@ -1,5 +1,5 @@
 gets = ()=>{
-    sql = "select * from devices "
+    sql = "select id device_id,* from devices "
     return sql
 }
 module.exports = {
