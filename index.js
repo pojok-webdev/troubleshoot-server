@@ -111,7 +111,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
                     troubleshootchecklist_id:checklistId,
                     implementer_id:user.implementer_id
                 }
-            ))
+            ),res => {})
         })
         srcParams.devicesBrought.forEach(dev => {
             connection.doQuery(troubleshootchecklists.removeDevicebrought(
@@ -119,7 +119,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
                     troubleshootchecklist_id:checklistId,
                     device_id:dev.device_id
                 }
-            ))
+            ),res => {})
         })
         srcParams.devicesUsed.forEach(dev => {
             connection.doQuery(troubleshootchecklists.removeDeviceused(
@@ -127,7 +127,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
                     troubleshootchecklist_id:checklistId,
                     device_id:dev.device_id
                 }
-            ))
+            ),res => {})
         })
         srcParams.problemTypes.forEach(problem => {
             connection.doQuery(troubleshootchecklists.removeProblem(
@@ -135,7 +135,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
                     troubleshootchecklist_id:checklistId,
                     problem_id:problem.problem_id
                 }
-            ))
+            ),res => {})
         })
     }
     srcParams.users.forEach(user => {
