@@ -109,7 +109,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
             connection.doQuery(troubleshootchecklists.removeImplementer(
                 {
                     troubleshootchecklist_id:checklistId,
-                    implementer_id:user.id
+                    implementer_id:user.implementer_id
                 }
             ))
         })
@@ -117,7 +117,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
             connection.doQuery(troubleshootchecklists.removeDevicebrought(
                 {
                     troubleshootchecklist_id:checklistId,
-                    device_id:dev.id
+                    device_id:dev.device_id
                 }
             ))
         })
@@ -125,7 +125,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
             connection.doQuery(troubleshootchecklists.removeDeviceused(
                 {
                     troubleshootchecklist_id:checklistId,
-                    device_id:dev.id
+                    device_id:dev.device_id
                 }
             ))
         })
@@ -133,7 +133,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
             connection.doQuery(troubleshootchecklists.removeProblem(
                 {
                     troubleshootchecklist_id:checklistId,
-                    problem_id:problem.id
+                    problem_id:problem.problem_id
                 }
             ))
         })
