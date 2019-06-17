@@ -131,6 +131,13 @@ saveItem = obj => {
     sql+= ""
     return sql
 }
+getItems = obj => {
+    sql = "select a.id,a.troubleshootchecklist_id,a.category,a.name,a.planning,a.result,a.target "
+    sql+= "from troubleshootchecklists_troubleshootchecklistitems a "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("getProblems",sql)
+    return sql
+}
 module.exports = {
     getByTroubleshoot:getByTroubleshoot,
     saveChecklist:saveChecklist,
@@ -148,5 +155,6 @@ module.exports = {
     removeDeviceused:removeDeviceused,
     removeImplementer:removeImplementer,
     removeProblem:removeProblem,
-    saveItem:saveItem
+    saveItem:saveItem,
+    getItems:getItems
 }

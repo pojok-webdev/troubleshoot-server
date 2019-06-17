@@ -227,4 +227,9 @@ app.get('/troubleshootchecklistsgetbyid/:troubleshootchecklist_id',(req,res)=>{
         res.send(rows)
     })
 })
+app.get('/itemgets',(req,res)=>{
+    connection.doQuery(troubleshootchecklists.getItems(req.params),rows => {
+        res.send(rows)
+    })
+})
 app.listen(process.env.PORT||2319)
