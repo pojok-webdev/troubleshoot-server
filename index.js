@@ -175,6 +175,19 @@ saveChecklistDetails = (srcParams,checklistId) => {
             return(res)
         })
     })
+    srcParams.items.forEach(item => {
+        connection.doQuery(troubleshootchecklists.saveItem(
+            {
+                troubleshootchecklist_id:checklistId,
+                name:item.name,
+                category:item.category,
+                target:item.target,
+                result:item.result,
+                planning:item.planning
+            }),res => {
+            return(res)
+        })
+    })
 }
 app.post('/troubleshootchecklistsave',(req,res) => {
     let srcParams = req.body

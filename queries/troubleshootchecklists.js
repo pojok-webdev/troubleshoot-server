@@ -123,6 +123,14 @@ removeProblem = obj => {
     console.log("remove problem",sql)
     return sql
 }
+saveItem = obj => {
+    sql = "insert into troubleshootchecklists_troubleshootchecklistitems "
+    sql+= "(troubleshootchecklist_id,category,name,planning,result,target) "
+    sql+= "values "
+    sql+= "("+obj.troubleshootchecklist_id+",'"+obj.category+"','"+obj.name+"','"+obj.planning+"','"+obj.result+"','"+obj.target+"') "
+    sql+= ""
+    return sql
+}
 module.exports = {
     getByTroubleshoot:getByTroubleshoot,
     saveChecklist:saveChecklist,
@@ -139,5 +147,6 @@ module.exports = {
     removeDevicebrought:removeDevicebrought,
     removeDeviceused:removeDeviceused,
     removeImplementer:removeImplementer,
-    removeProblem:removeProblem
+    removeProblem:removeProblem,
+    saveItem:saveItem
 }
