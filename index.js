@@ -139,16 +139,16 @@ saveChecklistDetails = (srcParams,checklistId) => {
         })
     }
     srcParams.users.forEach(user => {
+        console.log("USER",user)
         connection.doQuery(troubleshootchecklists.saveImplementers(
             {
                 troubleshootchecklist_id:checklistId,
-                implementer_id:user.implementer_id
+                implementer_id:user.id
             }),res => {
             return(res)
         })
     })
     srcParams.devicesBrought.forEach(dev=>{
-        console.log("Device brought",dev)
         connection.doQuery(troubleshootchecklists.saveBroughtDevices(
             {
                 troubleshootchecklist_id:checklistId,
@@ -167,7 +167,6 @@ saveChecklistDetails = (srcParams,checklistId) => {
         })
     })
     srcParams.problemTypes.forEach(problem => {
-        console.log("PROBLEM",problem)
         connection.doQuery(troubleshootchecklists.saveProblemcauses(
             {
                 troubleshootchecklist_id:checklistId,
