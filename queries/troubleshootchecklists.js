@@ -65,7 +65,7 @@ saveUsedDevices = obj => {
     sql+= "(troubleshootchecklist_id,device_id) "
     sql+= "values "
     sql+= "("+obj.troubleshootchecklist_id+","+obj.device_id+")"
-    console.log("saveBroughtDevice",obj,sql)
+    console.log("saveUsedDevice",obj,sql)
     return sql
 }
 saveProblemcauses = obj => {
@@ -73,7 +73,7 @@ saveProblemcauses = obj => {
     sql+= "(troubleshootchecklist_id,problem_id) "
     sql+= "values "
     sql+= "("+obj.troubleshootchecklist_id+","+obj.problem_id+")"
-    console.log("saveBroughtDevice",obj,sql)
+    console.log("saveProblemcauses",obj,sql)
     return sql
 }
 getObj = obj => {

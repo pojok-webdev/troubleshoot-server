@@ -167,6 +167,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
         })
     })
     srcParams.problemTypes.forEach(problem => {
+        console.log("PROBLEM",problem)
         connection.doQuery(troubleshootchecklists.saveProblemcauses(
             {
                 troubleshootchecklist_id:checklistId,
