@@ -135,7 +135,14 @@ getItems = obj => {
     sql = "select a.id,a.troubleshootchecklist_id,a.category,a.name,a.planning,a.result,a.target "
     sql+= "from troubleshootchecklists_troubleshootchecklistitems a "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
-    console.log("getProblems",sql)
+    console.log("getItems",sql)
+    return sql
+}
+removeItem = obj => {
+    sql = "delete "
+    sql+= "from troubleshootchecklists_troubleshootchecklistitems "
+    sql+= "where id = " + obj.id + " "
+    console.log("removeItem",sql)
     return sql
 }
 module.exports = {
@@ -156,5 +163,6 @@ module.exports = {
     removeImplementer:removeImplementer,
     removeProblem:removeProblem,
     saveItem:saveItem,
-    getItems:getItems
+    getItems:getItems,
+    removeItem:removeItem
 }

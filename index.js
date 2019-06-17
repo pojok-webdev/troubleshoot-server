@@ -137,6 +137,14 @@ saveChecklistDetails = (srcParams,checklistId) => {
                 }
             ),res => {})
         })
+        srcParams.items.forEach(item => {
+            connection.doQuery(troubleshootchecklists.removeItem(
+                {
+                    troubleshootchecklist_id:checklistId,
+                    id:item.id
+                }
+            ),res => {})
+        })
     }
     srcParams.users.forEach(user => {
         console.log("USER",user)
