@@ -171,7 +171,7 @@ saveChecklistDetails = (srcParams,checklistId) => {
         connection.doQuery(troubleshootchecklists.saveProblemcauses(
             {
                 troubleshootchecklist_id:checklistId,
-                problem_id:problem.problem_id
+                problem_id:problem.id
             }),res => {
             return(res)
         })
