@@ -71,7 +71,7 @@ getObj = obj => {
     return sql
 }
 getImplementers = obj => {
-    sql = "select a.troubleshootchecklist_id,a.implementer_id,b.username from troubleshootchecklists_implementers a "
+    sql = "select a.implementer_id id, a.troubleshootchecklist_id,a.implementer_id,b.username from troubleshootchecklists_implementers a "
     sql+= "left outer join users b on b.id=a.implementer_id "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
     console.log("getImplementers",sql)
@@ -111,7 +111,7 @@ removeDeviceused = obj => {
     return sql
 }
 getProblems = obj => {
-    sql = "select a.troubleshootchecklist_id,a.problem_id,b.name from troubleshootchecklists_problems a "
+    sql = "select a.problem_id id,a.troubleshootchecklist_id,a.problem_id,b.name from troubleshootchecklists_problems a "
     sql+= "left outer join ticketcauses b on b.id=a.problem_id "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
     console.log("getProblems",sql)
