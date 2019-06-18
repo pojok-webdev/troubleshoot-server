@@ -94,6 +94,7 @@ app.get('/troubleshootchecklistmaster',(req,res)=>{
 })
 app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
     connection.doQuery(troubleshootchecklists.getByTroubleshoot(req.params),rows => {
+        console.log("Rows getListData",rows)
         res.send(rows)
     })
 })
