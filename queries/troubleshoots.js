@@ -11,7 +11,7 @@ get = obj => {
     sql = "select a.id,b.clientname name,b.kdticket,count(c.id)checklistcount from troubleshoot_requests a "
     sql+= "left outer join tickets b on b.id=a.ticket_id "
     sql+= "left outer join troubleshootchecklists c on c.troubleshoot_id=a.id "
-    sql+= "where a.id = " + obj.id +" "
+    sql+= "where c.id = " + obj.id +" "
     sql+= "group by a.id,b.clientname,b.kdticket "
     sql+= "order by b.kdticket desc "
     console.log("SQL troubleshoot get",sql)
