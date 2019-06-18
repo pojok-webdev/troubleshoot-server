@@ -84,6 +84,13 @@ removeImplementer = obj => {
     console.log("remove implementer",sql)
     return sql
 }
+removeImplementerByTroubleshootchecklist = obj => {
+    console.log("ImPlemeNter OBJ",obj)
+    sql = "delete from troubleshootchecklists_implementers "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("remove implementer",sql)
+    return sql
+}
 getDevicebroughts = obj => {
     sql = "select a.troubleshootchecklist_id,a.device_id,b.name from troubleshootchecklists_broughtdevices a "
     sql+= "left outer join devices b on b.id=a.device_id "
@@ -94,6 +101,12 @@ getDevicebroughts = obj => {
 removeDevicebrought = obj => {
     sql = "delete from troubleshootchecklists_broughtdevices "
     sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " and device_id = " + obj.device_id + " "
+    console.log("remove device brought",sql)
+    return sql
+}
+removeDevicebroughtByTroubleshootchecklist = obj => {
+    sql = "delete from troubleshootchecklists_broughtdevices "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
     console.log("remove device brought",sql)
     return sql
 }
@@ -110,6 +123,12 @@ removeDeviceused = obj => {
     console.log("remove device used",sql)
     return sql
 }
+removeDeviceusedByTroubleshootchecklist = obj => {
+    sql = "delete from troubleshootchecklists_useddevices "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("remove device used",sql)
+    return sql
+}
 getProblems = obj => {
     sql = "select a.problem_id id,a.troubleshootchecklist_id,a.problem_id,b.name from troubleshootchecklists_problems a "
     sql+= "left outer join ticketcauses b on b.id=a.problem_id "
@@ -123,12 +142,19 @@ removeProblem = obj => {
     console.log("remove problem",sql)
     return sql
 }
+removeProblemByTroubleshootchecklist = obj => {
+    sql = "delete from troubleshootchecklists_problems "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
+    console.log("remove problem",sql)
+    return sql
+}
 saveItem = obj => {
     sql = "insert into troubleshootchecklists_troubleshootchecklistitems "
     sql+= "(troubleshootchecklist_id,category,name,planning,result,target) "
     sql+= "values "
     sql+= "("+obj.troubleshootchecklist_id+",'"+obj.category+"','"+obj.name+"','"+obj.planning+"','"+obj.result+"','"+obj.target+"') "
     sql+= ""
+    console.log("SQL SAVEITEM",sql)
     return sql
 }
 getItems = obj => {
@@ -138,10 +164,10 @@ getItems = obj => {
     console.log("getItems",sql)
     return sql
 }
-removeItem = obj => {
+removeItemByTroubleshootchecklist = obj => {
     sql = "delete "
     sql+= "from troubleshootchecklists_troubleshootchecklistitems "
-    sql+= "where id = " + obj.id + " "
+    sql+= "where troubleshootchecklist_id = " + obj.troubleshootchecklist_id + " "
     console.log("removeItem",sql)
     return sql
 }
@@ -164,5 +190,9 @@ module.exports = {
     removeProblem:removeProblem,
     saveItem:saveItem,
     getItems:getItems,
-    removeItem:removeItem
+    removeItemByTroubleshootchecklist:removeItemByTroubleshootchecklist,
+    removeDevicebroughtByTroubleshootchecklist:removeDevicebroughtByTroubleshootchecklist,
+    removeDeviceusedByTroubleshootchecklist:removeDeviceusedByTroubleshootchecklist,
+    removeImplementerByTroubleshootchecklist:removeImplementerByTroubleshootchecklist,
+    removeProblemByTroubleshootchecklist:removeProblemByTroubleshootchecklist
 }

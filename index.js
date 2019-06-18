@@ -57,10 +57,6 @@ app.get('/troubleshootchecklistremoveimplementer/:troubleshootchecklist_id/:impl
         res.send(rows)
     })
 })
-
-
-
-
 app.get('/tickets',(req,res)=>{
     connection.doQuery(tickets.gets(req.body),rows => {
         res.send(rows)
@@ -77,7 +73,6 @@ app.get('/troubleshoots',(req,res)=>{
     })
 })
 app.get('/troubleshoot/:id',(req,res)=>{
-    console.log("REQ.PARAMS",req.params)
     connection.doQuery(troubleshoots.get(req.params),rows => {
         res.send(rows)
     })
@@ -88,7 +83,6 @@ app.get('/troubleshootslimit/:segment/:offset',(req,res)=>{
     })
 })
 app.post('/troubleshootsearch',(req,res)=>{
-    console.log("ReqBody",req.body)
     connection.doQuery(troubleshoots.search(req.body),rows => {
         res.send(rows)
     })
@@ -105,110 +99,116 @@ app.get('/troubleshootchecklistsgetbytroubleshoot/:troubleshoot_id',(req,res)=>{
 })
 saveChecklistDetails = (srcParams,checklistId) => {
     if(srcParams.problemType==="edit"){
-        srcParams.users.forEach(user => {
-            connection.doQuery(troubleshootchecklists.removeImplementer(
+        connection.doQuery(troubleshootchecklists.removeImplementerByTroubleshootchecklist(
+            {
+                troubleshootchecklist_id:checklistId,
+            }
+        ),res => {})
+            connection.doQuery(troubleshootchecklists.removeDevicebroughtByTroubleshootchecklist(
                 {
                     troubleshootchecklist_id:checklistId,
-                    implementer_id:user.implementer_id
                 }
             ),res => {})
-        })
-        srcParams.devicesBrought.forEach(dev => {
-            connection.doQuery(troubleshootchecklists.removeDevicebrought(
+            connection.doQuery(troubleshootchecklists.removeDeviceusedByTroubleshootchecklist(
                 {
                     troubleshootchecklist_id:checklistId,
-                    device_id:dev.device_id
                 }
             ),res => {})
-        })
-        srcParams.devicesUsed.forEach(dev => {
-            connection.doQuery(troubleshootchecklists.removeDeviceused(
+            connection.doQuery(troubleshootchecklists.removeProblemByTroubleshootchecklist(
                 {
                     troubleshootchecklist_id:checklistId,
-                    device_id:dev.device_id
                 }
             ),res => {})
-        })
-        srcParams.problemTypes.forEach(problem => {
-            connection.doQuery(troubleshootchecklists.removeProblem(
+            connection.doQuery(troubleshootchecklists.removeItemByTroubleshootchecklist(
                 {
                     troubleshootchecklist_id:checklistId,
-                    problem_id:problem.problem_id
                 }
             ),res => {})
-        })
-        srcParams.items.forEach(item => {
-            connection.doQuery(troubleshootchecklists.removeItem(
-                {
-                    troubleshootchecklist_id:checklistId,
-                    id:item.id
-                }
-            ),res => {})
-        })
     }
-    srcParams.users.forEach(user => {
-        console.log("USER",user)
-        connection.doQuery(troubleshootchecklists.saveImplementers(
-            {
-                troubleshootchecklist_id:checklistId,
-                implementer_id:user.id
-            }),res => {
-            return(res)
-        })
+    saveUsers(srcParams.users,checklistId)
+    saveBroughtDevices(srcParams.devicesBrought,checklistId)
+    saveItems(srcParams.items,checklistId)
+    saveUsedDevices(srcParams.devicesUsed,checklistId)
+    saveProblems(srcParams.problemTypes,checklistId)
+}
+saveUsers = (obj,checklistId) => {
+    out = obj.splice(0,1)
+    connection.doQuery(troubleshootchecklists.saveImplementers(
+        {
+            troubleshootchecklist_id:checklistId,
+            implementer_id:out[0].id
+        }),res => {
+        return(res)
     })
-    srcParams.devicesBrought.forEach(dev=>{
-        connection.doQuery(troubleshootchecklists.saveBroughtDevices(
-            {
-                troubleshootchecklist_id:checklistId,
-                device_id:dev.device_id
-            }),res => {
-            return(res)
-        })    
+    if(obj.length>0){
+        saveUsers(obj,checklistId)
+    }
+}
+saveUsedDevices = (obj,checklistId) => {
+    out = obj.splice(0,1)
+    connection.doQuery(troubleshootchecklists.saveUsedDevices(
+        {
+            troubleshootchecklist_id:checklistId,
+            device_id:out[0].device_id
+        }),res => {
+        return(res)
     })
-    srcParams.devicesUsed.forEach(dev => {
-        connection.doQuery(troubleshootchecklists.saveUsedDevices(
-            {
-                troubleshootchecklist_id:checklistId,
-                device_id:dev.device_id
-            }),res => {
-            return(res)
-        })
+    if(obj.length>0){
+        saveUsedDevices(obj,checklistId)
+    }
+}
+saveProblems = (obj,checklistId) => {
+    out = obj.splice(0,1)
+    connection.doQuery(troubleshootchecklists.saveProblemcauses(
+        {
+            troubleshootchecklist_id:checklistId,
+            problem_id:out[0].id
+        }),res => {
+        return(res)
     })
-    srcParams.problemTypes.forEach(problem => {
-        connection.doQuery(troubleshootchecklists.saveProblemcauses(
-            {
-                troubleshootchecklist_id:checklistId,
-                problem_id:problem.id
-            }),res => {
-            return(res)
-        })
+    if(obj.length>0){
+        saveProblems(obj,checklistId)
+    }
+}
+saveBroughtDevices = (obj,checklistId) => {
+    out = obj.splice(0,1)
+    connection.doQuery(troubleshootchecklists.saveBroughtDevices(
+        {
+            troubleshootchecklist_id:checklistId,
+            device_id:out[0].device_id
+        }),res => {
+        return(res)
     })
-    srcParams.items.forEach(item => {
-        connection.doQuery(troubleshootchecklists.saveItem(
-            {
-                troubleshootchecklist_id:checklistId,
-                name:item.name,
-                category:item.category,
-                target:item.target,
-                result:item.result,
-                planning:item.planning
-            }),res => {
-            return(res)
-        })
+    if(obj.length>0){
+        saveBroughtDevices(obj,checklistId)
+    }
+}
+saveItems = (obj,checklistId) => {
+    out = obj.splice(0,1)
+    connection.doQuery(troubleshootchecklists.saveItem(
+        {
+            troubleshootchecklist_id:checklistId,
+            name:out[0].name,
+            category:out[0].category,
+            target:out[0].target,
+            result:out[0].result,
+            planning:out[0].planning
+    }),res => {
+        return(res)
     })
+    if(obj.length>0){
+        saveItems(obj,checklistId)
+    }
 }
 app.post('/troubleshootchecklistsave',(req,res) => {
     let srcParams = req.body
-    console.log(req.body)
     switch(srcParams.problemType){
         case 'add':
-        console.log('add woy')
             connection.doQuery(troubleshootchecklists.saveChecklist(srcParams),rows => {
                 saveChecklistDetails(srcParams,rows.insertId)
             })
         break
         case 'edit':
-        console.log('edit woy')
             connection.doQuery(troubleshootchecklists.updateChecklist(srcParams),rows => {
                 saveChecklistDetails(srcParams,srcParams.id)
             })
