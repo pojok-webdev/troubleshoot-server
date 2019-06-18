@@ -1,13 +1,10 @@
 getByTroubleshoot = obj => {
-    sql = "select * from troubleshootchecklists "
-    sql+= "where troubleshoot_id = " + obj.troubleshoot_id + " "
-    sql = "select a.id,c.kdticket,e.name from troubleshootchecklists a "
+    sql = "select a.id,c.kdticket,e.name,a.createuser,a.createdate from troubleshootchecklists a "
     sql+= "left outer join troubleshoot_requests b on b.id=a.troubleshoot_id "
     sql+= "left outer join tickets c on c.id=b.ticket_id "
     sql+= "left outer join client_sites d on d.id=b.client_site_id "
     sql+= "left outer join clients e on e.id=d.client_id "
     sql+= "where a.troubleshoot_id = " + obj.troubleshoot_id + " "
-    console.log("getList sql",sql)
     return sql; 
 }
 saveChecklist = obj => {
