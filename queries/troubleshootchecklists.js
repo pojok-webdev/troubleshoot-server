@@ -5,6 +5,7 @@ getByTroubleshoot = obj => {
     sql+= "left outer join client_sites d on d.id=b.client_site_id "
     sql+= "left outer join clients e on e.id=d.client_id "
     sql+= "where a.troubleshoot_id = " + obj.troubleshoot_id + " "
+    console.log("getByTroubleshoot",sql)
     return sql; 
 }
 saveChecklist = obj => {
