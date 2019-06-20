@@ -149,9 +149,9 @@ removeProblemByTroubleshootchecklist = obj => {
 }
 saveItem = obj => {
     sql = "insert into troubleshootchecklists_troubleshootchecklistitems "
-    sql+= "(troubleshootchecklist_id,category,name,planning,result,target) "
+    sql+= "(troubleshootchecklist_id,category,name,planning,result,target,description) "
     sql+= "values "
-    sql+= "("+obj.troubleshootchecklist_id+",'"+obj.category+"','"+obj.name+"','"+obj.planning+"','"+obj.result+"','"+obj.target+"') "
+    sql+= "("+obj.troubleshootchecklist_id+",'"+obj.category+"','"+obj.name+"','"+obj.planning+"','"+obj.result+"','"+obj.target+"','"+obj.description+"') "
     sql+= ""
     console.log("SQL SAVEITEM",sql)
     return sql

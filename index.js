@@ -192,7 +192,8 @@ saveItems = (obj,checklistId) => {
             category:out[0].category,
             target:out[0].target,
             result:out[0].result,
-            planning:out[0].planning
+            planning:out[0].planning,
+            description:out[0].description
     }),res => {
         return(res)
     })
